@@ -15,3 +15,5 @@
 - [ ] Bespreken wat de mate van configureerbaarheid moet zijn, afhankelijk daarvan de keuze maken of target talen configureerbaar moeten zijn via config files of beter een eigenschap kunnen zijn van de desbetreffende vertaalClass
 - [ ] Van-select vullen op basis van CanBeTranslatedInterface 
 - [ ] ...
+
+![](https://raw.githubusercontent.com/thomasmoors/dierenvertaler/master/screenshot.png)
