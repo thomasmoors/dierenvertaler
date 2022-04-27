@@ -1,6 +1,6 @@
 # instructies
  - [ ] Project draaien: `cp .env.example .env && php artisan key:generate && php artisan serve` en dan http://127.0.0.1:8000/ openen
- - [ ] Project testen: `php artisan pest`
+ - [ ] Project testen: `php artisan test`
 
 # verbeterpunten:
 - [ ] Een package maken van dit project
