@@ -14,7 +14,7 @@
             <div class="col-5">
                 <label for="from">van</label>
                 <div class="nes-select">
-                    <select name="from" id="from">
+                    <select name="from" id="from" onchange="updateToSelectOptions()">
                         <option value="detect">Taal herkennen</option>
                         @foreach(['Mens', 'Labrador', 'Poedel', 'Parkiet'] as $language)
                             <option value="{{ Str::lower($language) }}">{{ $language }}</option>
@@ -26,11 +26,11 @@
             <div class="col-5">
                 <label for="to">naar</label>
                 <div class="nes-select">
-                    <select name="to" id="to">
+                    <select name="to" id="to" disabled>
                     </select>
                 </div>
                 <label>
-                    <input type="checkbox" class="nes-checkbox" checked="">
+                    <input type="checkbox" class="nes-checkbox" name="drunk">
                     <span>Ik ben zo dronken!!!</span>
                 </label>
             </div>
@@ -38,7 +38,7 @@
         <br>
         <div class="row">
             <div class="col-5">
-                    <textarea class="nes-textarea" name="source-text"></textarea>
+                    <textarea class="nes-textarea" name="source-text" minlength="1"></textarea>
             </div>
             <div class="col-2 text-center">
                 <button class="nes-btn is-primary">Vertaal</button>
@@ -49,5 +49,27 @@
         </div>
         <br><br>
     </div>
+    <script>
+        updateToSelectOptions = () => {
+            const requestOptions = {
+                method: 'GET',
+                redirect: 'follow'
+            };
+
+            fetch('/targetLanguages?from=' + document.querySelector('#from').value, requestOptions)
+                .then(response => response.text())
+                .then(result => {
+                    const toSelect = document.querySelector('#to');
+                    toSelect.innerHTML = '';
+
+                    const languages = JSON.parse(result);
+
+                    if (Array.isArray(languages)) {
+                        toSelect.disabled = false;
+                        languages.forEach(language => toSelect.add(new Option(language, language)));
+                    }
+                });
+        };
+    </script>
     </body>
 </html>

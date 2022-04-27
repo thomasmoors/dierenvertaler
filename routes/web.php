@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('translate', [\App\Http\Controllers\TranslationController::class, 'translate']);
+Route::get('detect', [\App\Http\Controllers\TranslationController::class, 'detect']);
+Route::get('targetLanguages', [\App\Http\Controllers\TranslationController::class, 'targetLanguages']);
