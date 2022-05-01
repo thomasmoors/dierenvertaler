@@ -7,7 +7,7 @@ use App\Interfaces\TranslationInterface;
 
 class Parrot extends Language implements TranslationInterface
 {
-    public string $name = 'Papegaai';
+    public static string $name = 'Papegaai';
 
     private const VOCABULARY = 'Ik praat je na, ';
 

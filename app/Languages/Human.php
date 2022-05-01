@@ -6,7 +6,7 @@ use App\Interfaces\CanBeTranslatedInterface;
 
 class Human extends Language implements CanBeTranslatedInterface
 {
-    public string $name = 'Mens';
+    public static string $name = 'Mens';
 
     public function targetLanguages(): array
     {

@@ -24,7 +24,7 @@ class TranslationRequest extends FormRequest
     public function rules()
     {
         return [
-            'text' => 'required|string|min:1'
+            'sourceText' => 'required|string|min:1'
         ];
     }
 }

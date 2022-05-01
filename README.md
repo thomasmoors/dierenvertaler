@@ -1,5 +1,5 @@
 # instructies
- - [ ] Project draaien: `cp .env.example .env && php artisan key:generate && php artisan serve` en dan http://127.0.0.1:8000/ openen
+ - [ ] Project draaien: `composer install && cp .env.example .env && php artisan key:generate && php artisan serve` en dan http://127.0.0.1:8000/ openen
  - [ ] Project testen: `php artisan test`
 
 # verbeterpunten:
@@ -14,6 +14,7 @@
 - [ ] Vragen stellen over (edge) cases zoals het aantal zinnen dat geschreven kan worden, want er wordt enkel eenmalig gesproken over "2 zinnen"
 - [ ] Bespreken wat de mate van configureerbaarheid moet zijn, afhankelijk daarvan de keuze maken of target talen configureerbaar moeten zijn via config files of beter een eigenschap kunnen zijn van de desbetreffende vertaalClass
 - [ ] Van-select vullen op basis van CanBeTranslatedInterface 
+- [ ] Feedback geven wanneer validatie faalt 
 - [ ] ...
 
 ![](https://raw.githubusercontent.com/thomasmoors/dierenvertaler/master/screenshot.png)

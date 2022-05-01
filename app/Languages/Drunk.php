@@ -6,7 +6,7 @@ use App\Interfaces\TranslationInterface;
 
 class Drunk extends Language implements TranslationInterface
 {
-    public string $name = 'Dronken';
+    public static string $name = 'Dronken';
 
     private const VOCABULARY_SUFFIX = 'Burp!';
     private const VOCABULARY_MIDDLE = 'Proost!';
@@ -15,6 +15,7 @@ class Drunk extends Language implements TranslationInterface
 
     public function translate(string $input): string
     {
+        $split = $this->prepareText($input);
         $this->sentence = $input;
 
         return $this->nthWordBackward(4)->addMiddle()->addSuffix()->sentence;
@@ -35,7 +36,7 @@ class Drunk extends Language implements TranslationInterface
      */
     private function addMiddle(): self
     {
-        $sentences = explode('\n', $this->sentence);
+        $sentences = explode("\n", $this->sentence);
 
         if (count($sentences) !== 2) {
             throw new \Exception('There should be 2 sentences');

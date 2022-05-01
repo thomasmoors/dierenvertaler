@@ -5,14 +5,15 @@ namespace App\Languages;
 use App\Interfaces\CanBeTranslatedInterface;
 use App\Interfaces\LanguageDetectionInterface;
 use App\Interfaces\TranslationInterface;
+use Illuminate\Support\Collection;
 
 class Parakeet extends Language implements TranslationInterface, LanguageDetectionInterface, CanBeTranslatedInterface
 {
-    public string $name = 'Parkiet';
+    public static string $name = 'Parkiet';
 
     private const CONSONANT_VOCABULARY = 'piep';
     private const VOWEL_VOCABULARY = 'tjilp';
-
+    private const VOWELS = ['a', 'e', 'i', 'o', 'u'];
 
     public function detectLanguage(string $input): bool
     {
@@ -26,9 +27,13 @@ class Parakeet extends Language implements TranslationInterface, LanguageDetecti
      */
     public function translate(string $input): string
     {
-        return collect(explode(' ', $input))->map(function ($word) {
-            return in_array(substr($word, 0, 1), ['a', 'e', 'i', 'o', 'u']) ? self::VOWEL_VOCABULARY : self::CONSONANT_VOCABULARY;
-        })->implode(' ');
+        $split = $this->prepareText($input);
+
+        return $split->map(function (Collection $sentence) {
+            return $sentence->map(function (string $word) {
+                return in_array(substr($word, 0, 1), self::VOWELS) ? self::VOWEL_VOCABULARY : self::CONSONANT_VOCABULARY;
+            })->implode(' ');
+        })->implode("\n");
     }
 
     public function targetLanguages(): array

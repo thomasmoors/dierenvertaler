@@ -5,10 +5,11 @@ namespace App\Languages;
 use App\Interfaces\CanBeTranslatedInterface;
 use App\Interfaces\LanguageDetectionInterface;
 use App\Interfaces\TranslationInterface;
+use Illuminate\Support\Collection;
 
 class Poodle extends Language implements TranslationInterface, LanguageDetectionInterface, CanBeTranslatedInterface
 {
-    public string $name = 'Poedel';
+    public static string $name = 'Poedel';
 
     private const VOCABULARY = 'woefie';
 
@@ -24,9 +25,13 @@ class Poodle extends Language implements TranslationInterface, LanguageDetection
      */
     public function translate(string $input): string
     {
-        return collect(explode(' ', $input))->map(function () {
-            return self::VOCABULARY;
-        })->implode(' ');
+        $split = $this->prepareText($input);
+
+        return $split->map(function (Collection $sentence) {
+            return $sentence->map(function () {
+                return self::VOCABULARY;
+            })->implode(' ');
+        })->implode("\n");
     }
 
     public function targetLanguages(): array
